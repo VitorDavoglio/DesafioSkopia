@@ -39,4 +39,4 @@ O Projeto abaixo replica os comportamentos solicitados no seguinte teste : https
 1. Em uma maquina com docker instalado executar o comando `docker build -t tsk-mgmt-api -f ./DockerFile .` a partir da pasta raiz da solução
 2. Após gerada a imagem executar o comando de aplicação do manifesto k8s `kubectl apply -f .\k8sdeployment.yaml`
 3. Caso necessário ajustar a variavel ConnectionStrings__TaskManagerDb do arquivo k8sdeployment.yaml para que aponte para o banco de dados da sua preferencia.
-4. O arq
+4. O arquivo k8sdeployment.yaml já contem todas as configurações necessárias para expor a api na porta 8002 , basta alterar o arquivo na sessão service-> spec -> ports -> port para a porta desejada caso a porta 8002 já esteja em uso na sua máquina

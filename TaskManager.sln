@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager", "TaskManager\TaskManager.csproj", "{417F41F6-E092-4D62-A0B1-9EA0C6A28328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Application", "TaksManager.Application\TaskManager.Application.csproj", "{ACBA1204-4B62-46E7-BE44-1DA960D9ED81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Application", "TaskManager.Application\TaskManager.Application.csproj", "{ACBA1204-4B62-46E7-BE44-1DA960D9ED81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infra", "TaskManager.Infra\TaskManager.Infra.csproj", "{15C226D8-F579-4004-8A31-09FB07522E1F}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Core", "1- Core", "{01DF46E2-06E2-42FF-A84D-64B8661872FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{1FEF2EEE-56FA-49EC-BF5D-78837DC80ECD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X - Build And Run", "X - Build And Run", "{BB33A52B-F4F6-4495-B49C-D5D9C1BE7825}"
+	ProjectSection(SolutionItems) = preProject
+		DockerFile = DockerFile
+		ks8deployment.yaml = ks8deployment.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -86,3 +86,24 @@ spec:
           type: Utilization
           averageUtilization: 95
 ---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: tsk-mgmt
+  name: tsk-mgmt-api-svc
+  labels:
+    app: tsk-mgmt-api
+    tier: api
+    version: v1
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8002
+      name: http
+      targetPort: 80
+  selector:
+    app: tsk-mgmt-api
+    tier: api
+    version: v1
+---

@@ -15,8 +15,6 @@ RUN dotnet restore "TaskManager/TaskManager.csproj"
 COPY . .
 WORKDIR "/src/TaskManager"
 
-RUN mv appsettings.Docker.json appsettings.json
-
 RUN dotnet publish "TaskManager.csproj" -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base

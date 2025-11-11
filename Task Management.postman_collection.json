@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "54cf8589-288d-4c97-9bf3-b6be366ebc66",
+		"name": "Task Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49082362",
+		"_collection_link": "https://vitor-davoglio-7138939.postman.co/workspace/vitor-davoglio's-Workspace~4636a4e6-f1cf-4c4f-88ea-28675cfd935e/collection/49082362-54cf8589-288d-4c97-9bf3-b6be366ebc66?action=share&source=collection_link&creator=49082362"
+	},
+	"item": [
+		{
+			"name": "1 - Criar projeto para um usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ownerId\": \"2712be0f-6146-4f74-b66e-dec1bb84fa8c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/Projects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Buscar Projetos de um usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.body.json();\r",
+							"var projectId = jsonData.data.projects[0].id;\r",
+							" pm.globals.set(\"projectId\", projectId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/Projects/2712be0f-6146-4f74-b66e-dec1bb84fa8c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Projects",
+						"2712be0f-6146-4f74-b66e-dec1bb84fa8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Criar Task para um projeto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Task Teste\",\r\n  \"description\": \"Task de Teste\",\r\n  \"dueDate\": \"2025-11-11T17:31:00.135Z\",\r\n  \"currentStatus\": \"Pending\",\r\n  \"priority\": \"Low\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/Tasks/Project/49f56719-ecf0-4f57-91f6-94e37cbd69a6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Tasks",
+						"Project",
+						"49f56719-ecf0-4f57-91f6-94e37cbd69a6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Buscar Tasks de um Projeto",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Alterar Task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"updaterId\": \"2712be0f-6146-4f74-b66e-dec1bb84fa8c\",\r\n  \"details\": \"Task alterada por motivos de teste\",\r\n  \"status\": \"Pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/Tasks/b24bf187-b064-4a31-a6b9-021b40298c65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Tasks",
+						"b24bf187-b064-4a31-a6b9-021b40298c65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1 - Comentar Task",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "updater",
+						"value": "2712be0f-6146-4f74-b66e-dec1bb84fa8c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"comment\": \"Adicao Comentario TST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/Tasks/b24bf187-b064-4a31-a6b9-021b40298c65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Tasks",
+						"b24bf187-b064-4a31-a6b9-021b40298c65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Remover Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/Tasks/b24bf187-b064-4a31-a6b9-021b40298c65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Tasks",
+						"b24bf187-b064-4a31-a6b9-021b40298c65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Relatórios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "logged-user-id",
+						"value": "df737e18-1699-4626-a8fd-54b450fe69d8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8002/Reports/2712be0f-6146-4f74-b66e-dec1bb84fa8c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"Reports",
+						"2712be0f-6146-4f74-b66e-dec1bb84fa8c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

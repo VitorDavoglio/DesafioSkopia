@@ -26,3 +26,11 @@ O Projeto abaixo replica os comportamentos solicitados no seguinte teste : https
 12. Aplicação containerizada via Docker
 13. Implantação e orquestração do projeto utilizando K8s.
 
+# Sugesões de Refinamento:
+
+1. Conforme documento no link : https://meteor-ocelot-f0d.notion.site/NET-C-5281edbec2e4480d98552e5ca0242c5b a aplicação contém a habilidade de adicionar comentários a tasks , mas não contempla remoção ou atualização dos mesmos, o que seria uma feature interessante.
+2. Não foram solicitados Logs , que são essenciais em ambientes produtivos.
+3. As tasks não possuem informação de estimativa e na minha visão essa é uma feature que adiciona muito valor a gestão.
+5. O relatório de desempenho leva em consideração somente um usuário , seria interessante poder visualizar o desempenho do projeto como um todo.
+6. O relatório poderia ser exportado para XLSX ou CSV
+7. A task não possui um responsável , e o projeto não permite mais de um usuário.

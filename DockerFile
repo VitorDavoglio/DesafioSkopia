@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+WORKDIR /app
+WORKDIR /src
+EXPOSE 80
+
+COPY ["*.sln", "./"]
+
+COPY ["TaskManager/TaskManager.csproj", "TaskManager/"]
+COPY ["TaskManager.Application/TaskManager.Application.csproj", "TaskManager.Application/"]
+COPY ["TaskManager.Domain/TaskManager.Domain.csproj", "TaskManager.Domain/"]
+COPY ["TaskManager.Infra/TaskManager.Infra.csproj", "TaskManager.Infra/"]
+
+RUN dotnet restore "TaskManager/TaskManager.csproj"
+
+COPY . .
+WORKDIR "/src/TaskManager"
+
+RUN mv appsettings.Docker.json appsettings.json
+
+RUN dotnet publish "TaskManager.csproj" -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base
+
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "TaskManager.dll"]

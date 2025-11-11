@@ -1,0 +1,88 @@
+#namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tsk-mgmt
+---
+#api
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tsk-mgmt
+  name: tsk-mgmt-api
+  labels:
+    app: tsk-mgmt-api
+    tier: api
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: tsk-mgmt-api
+      tier: api
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tsk-mgmt-api
+        tier: api
+        version: v1
+    spec:
+      containers:
+        - name: tsk-mgmt-api
+          image: "tsk-mgmt-api:latest"
+          env:
+            - name: Log__Console__Enabled
+              value: "true"
+            - name: Log__Console__MinimumLevel
+              value: "Information"
+            - name: ConnectionStrings__TaskManagerDb
+              value: "Information"
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 30m
+              memory: 100Mi
+            limits:
+              cpu: 50m
+              memory: 150Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+---
+#hpa
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: tsk-mgmt
+  name: tsk-mgmt-api-hpa
+spec:
+  minReplicas: 1
+  maxReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: tsk-mgmt-api
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: 
+          type: Utilization
+          averageUtilization: 95
+    - type: Resource
+      resource:
+        name: memory
+        target: 
+          type: Utilization
+          averageUtilization: 95
+---

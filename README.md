@@ -37,6 +37,6 @@ O Projeto abaixo replica os comportamentos solicitados no seguinte teste : https
 
 # Como Executar o Projeto: 
 1. Em uma maquina com docker instalado executar o comando `docker build -t tsk-mgmt-api -f ./DockerFile .` a partir da pasta raiz da solução
-2. Após gerada a imagem executar o comando de aplicação do manifesto k8s `kubectl apply -f ./k8sdeployment.yaml`
+2. Após gerada a imagem executar o comando de aplicação do manifesto k8s `kubectl apply -f .\k8sdeployment.yaml`
 3. Caso necessário ajustar a variavel ConnectionStrings__TaskManagerDb do arquivo k8sdeployment.yaml para que aponte para o banco de dados da sua preferencia.
 4. O arq

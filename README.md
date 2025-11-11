@@ -40,3 +40,17 @@ O Projeto abaixo replica os comportamentos solicitados no seguinte teste : https
 2. Após gerada a imagem executar o comando de aplicação do manifesto k8s `kubectl apply -f .\k8sdeployment.yaml`
 3. Caso necessário ajustar a variavel ConnectionStrings__TaskManagerDb do arquivo k8sdeployment.yaml para que aponte para o banco de dados da sua preferencia.
 4. O arquivo k8sdeployment.yaml já contem todas as configurações necessárias para expor a api na porta 8002 , basta alterar o arquivo na sessão service-> spec -> ports -> port para a porta desejada caso a porta 8002 já esteja em uso na sua máquina
+5. O repositório contém uma coleção postman com todos os endpoints mapeados e ordenados para uso.
+6. A aplicação sobe com seed de dois usuários já cadastrados sendo eles : 
+`   new UserMapping { Id = Guid.Parse("2712be0f-6146-4f74-b66e-dec1bb84fa8c"), Name = "Dev", Account = "dev@taskmanagerapp.com", Role = Domain.Enums.UserRole.Developer },
+   new UserMapping { Id = Guid.Parse("df737e18-1699-4626-a8fd-54b450fe69d8"), Name = "Manager", Account = "manager@taskmanagerapp.com", Role = Domain.Enums.UserRole.Manager } }`
+7. Comece o fluxo criando um projeto para um desses usuarios
+8. Busque os projetos cadastrados para esse mesmo usuário
+9. Utilize o id do projeto retornado no nó data.projects[0].id para criar uma nova task para o projeto
+10. Busque as tasks do projeto retornado no passo 8
+11. Utilize o id da task retornada no nó data.tasks[0].id para alterar , deletar ou adicionar comentários a task
+12. Busque as tasks do projeto retornado no passo 8 a qualquer momento para verificar o historico de alterações das tasks e os comentarios adicionados.
+13. Utilize o endpoint "Obter Relatorios" informando no header da requisição "logged-user-id" o id "df737e18-1699-4626-a8fd-54b450fe69d8" e no parametro da query o id "2712be0f-6146-4f74-b66e-dec1bb84fa8c" para obter o relatorio de performance do usuario "2712be0f-6146-4f74-b66e-dec1bb84fa8c"
+14. Caso tente utilizar o endpoint "Obter Relatorios" informando no header da requisição "logged-user-id" o id "2712be0f-6146-4f74-b66e-dec1bb84fa8c" o sistema deve retornar erros.
+
+
